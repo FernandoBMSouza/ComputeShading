@@ -1,0 +1,33 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+//Somente possível criar estruturas com dados de tipos primitivos 
+struct Cube
+{
+    float3 position;
+    float4 color;
+};
+
+RWStructuredBuffer<Cube> cubes;
+
+inline float rand(float2 coordinate)
+{
+    //dot é produto escalar
+    //sin = seno
+    //frac = valor fracional (fração)
+    return (frac(sin(dot(coordinate.x, float2(12.9898, 78233))) * 43758.5453 ));
+}
+
+//Cada bloco tem 10 threads, consegue processar até 10 elementos
+[numthreads(10,1,1)] //Aqui é matriz logo multiplica os 3 valores para descobrir quantas threads vão ter no bloco (nesse caso são 10 threads)
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    Cube _cube = cubes[id.x];
+    float r = rand(float2(_cube.position.xy));
+    float g = rand(float2(_cube.position.yz));
+    float b = rand(float2(_cube.position.z, _cube.position.x)); //não são contínuos por isso precisa botar separado
+    
+    _cube.color = float4(r, g, b, 1.0);
+
+    cubes[id.x] = _cube;
+}

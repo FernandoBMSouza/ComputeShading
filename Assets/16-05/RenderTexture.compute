@@ -1,0 +1,16 @@
+#pragma kernel CSMain
+//Read Write Texture 2D
+//float4 = red, green blue and alpha
+RWTexture2D<float4> Result;
+float resolution;
+
+//tamanho do bloco, eixo z sem threads e xy 8x8 = 64 threads
+[numthreads(8,8,1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    //normalizando os valores
+    float _r = id.x / resolution;
+    float _g = id.y / resolution;
+
+    Result[id.xy] = float4(_r, _g, 0.0, 1.0);
+}

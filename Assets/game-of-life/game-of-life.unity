@@ -242,11 +242,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1571639417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 813bfc16aa16dc24ba818911d588ddeb, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f1ab1bff5ce5a84c970b0c5a67d4ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nCubesPerLine: 20
-  cubePrefab: {fileID: 6535010185335202359, guid: 3cd329e5474fcd14f91335ee3695cfd2, type: 3}
+  nCube: 20
+  cellPrefab: {fileID: 6535010185335202359, guid: 3cd329e5474fcd14f91335ee3695cfd2, type: 3}
+  timeInterval: 0.5
 --- !u!4 &1571639419
 Transform:
   m_ObjectHideFlags: 0

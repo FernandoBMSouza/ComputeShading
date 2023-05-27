@@ -10,6 +10,9 @@ public class GameOfLife : MonoBehaviour
     private bool[,] grid;
     private GameObject[,] cells;
 
+    //Parte do processo de GPU
+    Cell[] celldata;
+
     private void Start()
     {
         // Inicializa o grid e as células
@@ -161,4 +164,18 @@ public class GameOfLife : MonoBehaviour
     {
         cube.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white);
     }
+
+#region GPUTestes
+
+    struct Cell {
+        public Vector3 position;
+        public Color color;
+        public Color nextColor;
+    }
+
+    private void ProcessGPU()
+    {
+
+    }
+#endregion
 }

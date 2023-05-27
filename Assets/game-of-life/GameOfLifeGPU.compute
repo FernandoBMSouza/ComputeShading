@@ -1,0 +1,35 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+struct Cell
+{
+	float3 position;
+	float4 color;
+	float4 nextColor;
+};
+
+RWStructuredBuffer<Cell> cells;
+float ncubes;
+
+[numthreads(10, 1, 1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+	Cell _cell = cells[id.x];
+	float vizinhos = 0f;
+
+	for (int i = 0; i < ncubes^2; i++)
+	{
+		if (i == id.x)
+			continue;
+
+		float distance = distance(cells[id.x].position, cells[i].position);
+
+		if (distance < 1.9f)
+		{
+			if (cells[i].color.x = 1f)
+			{
+				vizinhos++;
+			}
+		}
+	}
+}

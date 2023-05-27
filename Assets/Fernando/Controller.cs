@@ -43,7 +43,7 @@ public class Controller : MonoBehaviour
             {
                 SimulateGameOfLifeCPU();
                 timer = 0f;
-            }  
+            } 
         }
 
         if(isGPU)
@@ -54,7 +54,7 @@ public class Controller : MonoBehaviour
             {
                 SimulateGameOfLifeGPU();
                 timer = 0f;
-            }  
+            }
         }
     }
 
@@ -194,4 +194,5 @@ public class Controller : MonoBehaviour
 
         cubeBuffer.Dispose();
     }
+
 }
